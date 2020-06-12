@@ -74,11 +74,12 @@ get_header();
 		<?php
 	}
 
+		//Añadimos url a la que haremos la petición
 		$url = "https://fernandafamiliar.soy/wp-json/wp/v2/posts";
 
 		$request = curl_init($url);
 
-		//convert arguments to json
+		//Convertimos los argumentos a JSON
 
 		curl_setopt($request, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 		curl_setopt($request, CURLOPT_HEADER, false);
@@ -90,6 +91,7 @@ get_header();
 		$response_obj = json_decode($response);
 		$result = $response_obj;
 		
+		//Por cada resultado, obtendremos un post, para obtener sus datos hay que iterarlo y mostrar sus datos
 		foreach ($result as $post) {
 			echo '<div class="container" style="display:block; border-radius: 20px; margin-top:25px; margin-left:5%; background-color: #fff; width:90%; height:200px; padding:5px;">';
 			echo '<img style="border-radius: 20px;width:27%; height:100%; display:inline-block; float:left; margin-left:2px;" src="'.$post->jetpack_featured_media_url.'">';
