@@ -74,21 +74,24 @@ get_header();
 		<?php
 	}
 
-	if ( have_posts() ) {
+		$url = "https://fernandafamiliar.soy/wp-json/wp/v2/posts";
 
-		$i = 0;
+		$request = curl_init($url);
 
-		while ( have_posts() ) {
-			$i++;
-			if ( $i > 1 ) {
-				echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
-			}
-			the_post();
+		//convert arguments to json
 
-			get_template_part( 'template-parts/content', get_post_type() );
+		curl_setopt($request, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+		curl_setopt($request, CURLOPT_HEADER, false);
+		curl_setopt($request, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($request, CURLOPT_FOLLOWLOCATION, 0);
+		curl_setopt($request, CURLOPT_CUSTOMREQUEST, "GET");
+		$response = curl_exec($request);
+		$response_obj = json_decode($response);
+		$result = $response_obj;
+		print_r ($result);
+		echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
 
-		}
-	} elseif ( is_search() ) {
 		?>
 
 		<div class="no-search-results-form section-inner thin">
@@ -103,9 +106,6 @@ get_header();
 
 		</div><!-- .no-search-results -->
 
-		<?php
-	}
-	?>
 
 	<?php get_template_part( 'template-parts/pagination' ); ?>
 
