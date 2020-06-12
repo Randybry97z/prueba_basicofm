@@ -89,7 +89,14 @@ get_header();
 		$response = curl_exec($request);
 		$response_obj = json_decode($response);
 		$result = $response_obj;
-		print_r ($result);
+		
+		foreach ($result as $post) {
+			echo '<img src="'.$post->jetpack_featured_media_url.'">';
+			echo "<div class='card'>";
+				echo '<h3>'.$post->title->rendered.'</h3>';
+				echo '<p>'.substr($post->content->rendered,0,250).'... <a href='.$post->link.' target="_blank">Ver mas</a></p>';
+			echo '</div>';
+		}
 		echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
 
 		?>
