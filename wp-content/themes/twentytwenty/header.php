@@ -60,10 +60,11 @@
 
 						<?php
 							// Site title or logo.
-							twentytwenty_site_logo();
+							//twentytwenty_site_logo();
+							echo '<h2>Prueba Básico.fm</h2>';
 
 							// Site description.
-							twentytwenty_site_description();
+							//twentytwenty_site_description();
 						?>
 
 					</div><!-- .header-titles -->

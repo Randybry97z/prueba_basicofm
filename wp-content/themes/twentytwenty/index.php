@@ -92,14 +92,16 @@ get_header();
 		
 		foreach ($result as $post) {
 			echo '<div class="container" style="display:block; border-radius: 20px; margin-top:25px; margin-left:5%; background-color: #fff; width:90%; height:200px; padding:5px;">';
-			echo '<img style="width:25%; height:100%; display:inline-block; float:left; margin-right:inherit margin-left:20px;" src="https://i.pinimg.com/originals/ca/76/0b/ca760b70976b52578da88e06973af542.jpg">';
+			echo '<img style="width:25%; height:100%; display:inline-block; float:left; margin-left:25px;" src="https://i.pinimg.com/originals/ca/76/0b/ca760b70976b52578da88e06973af542.jpg">';
 			echo "<div class='card' style=' display: inline-block; float:right; width: 70%; height:100%;'>";
 				echo '<h3 style="font-size:20px; margin: 5px;">'.$post->title->rendered.'</h3>';
 				$date_entered = date('Y-m-d', strtotime($post->date));
 				$date_updated = date('Y-m-d', strtotime($post->date_gmt));
+				echo '<p style="margin-bottom:10px;">';
 				echo '<span class="date-entered" style="display: inline-block; font-size:10px; color: #525252;">Publicado el: '.$date_entered.'</span>';
-				echo '<span class="date-update" style="display: inline-block; float:right; font-size:10px; color: #525252;">Actualizado: '.$date_updated.'</span>';
-				echo '<p>'.substr($post->content->rendered,0,250).'... <a href='.$post->link.' target="_blank">Ver mas</a></p>';
+				echo '<span class="date-update" style="display: inline-block; float:right; font-size:10px; color: #525252; margin-right: 20px;">Actualizado: '.$date_updated.'</span>';
+				echo '</p>';
+				echo substr($post->content->rendered,0,150).'... <span style="display: block;"><a href='.$post->link.' target="_blank">Ver mas</a></span>';
 			echo '</div>';
 			echo '</div>';
 		
